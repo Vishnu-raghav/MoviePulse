@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import service from './service';   // `service` lowercase me, kyunki tu instance export kar raha hai
+import service from '../../appwrite/config';   // `service` lowercase me, kyunki tu instance export kar raha hai
 
 export const addMovieToWatchlist = createAsyncThunk(
   'watchlist/addMovie',

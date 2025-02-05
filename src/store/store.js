@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit"
 import watchlistReducer from './watchList/watchlistSlice';
-import moviesReducer from './moviesSlice';
+import moviesReducer from './movieSlice.js';
 import authSlice from './authSlice'
 
 const store = configureStore({

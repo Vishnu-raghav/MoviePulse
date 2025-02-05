@@ -1,4 +1,4 @@
-import {createSlice,createAsyncThunk, buildCreateSlice} from "@reduxjs/toolkit"
+import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
 import { fetchMoviesFromApi } from "../MovieApi/movies"
 
 export const fetchMovies = createAsyncThunk('movies/fetchmovies',async() =>{
@@ -24,7 +24,7 @@ const movieSlice = createSlice({
             state.loading = false;
             state.movies = action.payload;
          })
-         .addCase(fetchMovies,(state,action) =>{
+         .addCase(fetchMovies.rejected,(state,action) =>{
             state.loading = false;
             state.error = action.error.message
          })

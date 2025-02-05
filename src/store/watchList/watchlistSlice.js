@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addMovieToWatchlist, removeMovieFromWatchlist, fetchWatchlist } from './watchlistAsyncActions';
+import { addMovieToWatchlist, removeMovieFromWatchlist, fetchWatchlist } from './watchlistAsync.js';
 
 const initialState = {
   movies: [],     

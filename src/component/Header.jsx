@@ -1,8 +1,10 @@
-
+import Input from "./Input"
 function Header(){
 
     return(
-        <div></div>
+        <div>
+            Header
+        </div>
     )
 }
 
