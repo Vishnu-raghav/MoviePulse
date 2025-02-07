@@ -24,8 +24,11 @@ function App() {
     <div>
       <div>
         <Header/>
+        <div className='pt-16'>
         <Outlet/>
+        </div>
         <Footer/>
+
 
       </div>
     </div>

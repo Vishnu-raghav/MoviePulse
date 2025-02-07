@@ -6,6 +6,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
+import MoviePage from './pages/MoviePage.jsx'
+import SearchResults from './pages/SearchResult.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,14 @@ const router = createBrowserRouter([
       {
         path : "/",
         element : <Home/>
+      },
+      {
+        path : "/movie/:slug",
+        element : <MoviePage/>
+      },
+      {
+        path : "/search/:query",
+        element : <SearchResults/>
       }
     ]
   }
@@ -23,7 +33,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      {/* Wrap RouterProvider around the app */}
       <RouterProvider router={router} />
     </Provider>
   </StrictMode>
