@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import LogOutBtn from "./LogOutBtn";
 import Login from "./Login";
-import SignUp from "./SignUp";
+import Signup from "./Signup";
 import Input from "./Input";
 
 function Header() {
@@ -127,7 +127,7 @@ function Header() {
       )}
 
       {isSignUpOpen && (
-        <SignUp
+        <Signup
           onClose={() => setIsSignUpOpen(false)}
           switchToLogin={() => {
             setIsSignUpOpen(false);
