@@ -18,11 +18,7 @@ function Header() {
   const navItems = [
     { name: "WatchList", path: "/watchlist", active: authStatus },
     { name: "Login", onClick: () => setIsLoginOpen(true), active: !authStatus },
-    {
-      name: "SignUp",
-      onClick: () => setIsSignUpOpen(true),
-      active: !authStatus,
-    },
+    { name: "SignUp", onClick: () => setIsSignUpOpen(true), active: !authStatus },
   ];
 
   const handleSearch = (e) => {
@@ -34,7 +30,7 @@ function Header() {
   return (
     <>
       <header className="bg-blue-950 text-white fixed top-0 w-full z-50 shadow-lg">
-        <nav className="flex items-center justify-between px-4 sm:px-10 lg:px-20 h-16">
+        <nav className="flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-20 h-16">
           <h1
             className="text-2xl font-bold cursor-pointer hover:scale-105 transition"
             onClick={() => navigate("/")}
@@ -42,7 +38,7 @@ function Header() {
             MoviePulse
           </h1>
 
-          <div className="flex w-40 sm:w-64 md:w-80 relative">
+          <div className="flex w-full sm:w-64 md:w-80 relative px-4 sm:px-0">
             <Input
               className="w-full pl-10 pr-3 py-2 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-white"
               placeholder="Search movies..."
@@ -50,7 +46,7 @@ function Header() {
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleSearch}
             />
-            <FaSearch className="absolute left-3 top-3 text-gray-500 text-lg" />
+            <FaSearch className="absolute left-6 sm:left-3 top-3 text-gray-500 text-lg" />
           </div>
 
           <ul className="hidden md:flex items-center space-x-6">
@@ -80,29 +76,27 @@ function Header() {
           </button>
         </nav>
 
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-blue-900 shadow-lg flex flex-col items-center p-4 space-y-4">
-            <ul className="flex flex-col items-center space-y-4">
-              {navItems.map(
-                (item) =>
-                  item.active && (
-                    <li key={item.name}>
-                      <button
-                        onClick={() => {
-                          setIsMenuOpen(false);
-                          item.onClick ? item.onClick() : navigate(item.path);
-                        }}
-                        className="bg-white text-blue-600 px-5 py-2 rounded-full font-semibold shadow-md transition duration-200 hover:bg-blue-700 hover:text-white"
-                      >
-                        {item.name}
-                      </button>
-                    </li>
-                  )
-              )}
-              {authStatus && <LogOutBtn />}
-            </ul>
-          </div>
-        )}
+        <div
+          className={`md:hidden fixed top-16 left-0 w-full bg-blue-900 shadow-lg flex flex-col items-center p-4 space-y-4 transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
+        >
+         
+          {navItems.map(
+            (item) =>
+              item.active && (
+                <button
+                  key={item.name}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    item.onClick ? item.onClick() : navigate(item.path);
+                  }}
+                  className="bg-white text-blue-600 px-5 py-2 rounded-full font-semibold shadow-md transition duration-200 hover:bg-blue-700 hover:text-white w-3/4 text-center"
+                >
+                  {item.name}
+                </button>
+              )
+          )}
+          {authStatus && <LogOutBtn />}
+        </div>
       </header>
 
       {isLoginOpen && (
@@ -118,7 +112,7 @@ function Header() {
 
       {isSignUpOpen && (
         <Signup
-        isOpen={isSignUpOpen}
+          isOpen={isSignUpOpen}
           onClose={() => setIsSignUpOpen(false)}
           switchToLogin={() => {
             setIsSignUpOpen(false);
@@ -131,6 +125,3 @@ function Header() {
 }
 
 export default Header;
-
-
-
