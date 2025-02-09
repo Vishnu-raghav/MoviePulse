@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaTwitter, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa"; 
+import { FaTwitter, FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa"; 
 
 function Footer() {
   return (
@@ -22,13 +22,13 @@ function Footer() {
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition">
             <FaInstagram />
           </a>
-          <a href="mailto:contact@moviepulse.com" className="hover:text-yellow-300 transition">
-            <FaEnvelope />
+          <a href="https://github.com/Vishnu-raghav" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition">
+            <FaGithub />
           </a>
         </div>
 
         <p className="text-sm opacity-85">
-          📍 Location: Mumbai, India | ✉ Email: contact@moviepulse.com
+          📍 Location: Mumbai, India
         </p>
 
         <p className="text-sm opacity-75">
@@ -40,4 +40,3 @@ function Footer() {
 }
 
 export default Footer;
-
