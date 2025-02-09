@@ -118,7 +118,7 @@ function Card({ Name, Image, movieId, isWatchlistPage = false }) {
       )}
 
       {isSignUpOpen && (
-        <SignUp
+        <Signup
           isOpen={isSignUpOpen}
           onClose={() => setIsSignUpOpen(false)}
           switchToLogin={() => {
