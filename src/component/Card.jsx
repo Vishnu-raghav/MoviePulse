@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addMovieToWatchlist, removeMovieFromWatchlist, fetchWatchlist } from "../store/watchList/watchlistAsync";
 
-import Login from "./Login";
-import SignUp from "./SignUp";
+import Login from "../component/Login";
+import SignUp from "../component/Signup";
 
 function Card({ Name, Image, movieId, isWatchlistPage = false }) {
   const dispatch = useDispatch();

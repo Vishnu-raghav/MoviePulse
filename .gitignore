@@ -27,5 +27,4 @@ dist-ssr
 # Ignore .env file
 .env
 
-# Ignore MovieApi folder
-MovieApi/
+
