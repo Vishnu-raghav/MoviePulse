@@ -18,6 +18,7 @@ function App() {
                   }
                })
                .finally(() => setLoading(false))
+               
   },[])
   return !loading ? (
       <div className="flex flex-col min-h-screen">
