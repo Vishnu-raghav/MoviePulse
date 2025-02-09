@@ -82,17 +82,6 @@ function Header() {
 
         {isMenuOpen && (
           <div className="md:hidden absolute top-16 left-0 w-full bg-blue-900 shadow-lg flex flex-col items-center p-4 space-y-4">
-            <div className="w-full flex items-center relative">
-              <Input
-                className="w-full pl-10 pr-3 py-2 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-white"
-                placeholder="Search movies..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={handleSearch}
-              />
-              <FaSearch className="absolute left-3 top-3 text-gray-500 text-lg" />
-            </div>
-
             <ul className="flex flex-col items-center space-y-4">
               {navItems.map(
                 (item) =>
@@ -142,3 +131,6 @@ function Header() {
 }
 
 export default Header;
+
+
+

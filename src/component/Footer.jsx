@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { FaTwitter, FaFacebook, FaInstagram, FaEnvelope } from "react-icons/fa"; 
+import { FaTwitter, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa"; 
 
 function Footer() {
   return (
-    <footer className="bg-gradient-to-r  bg-blue-950 text-white py-10">
-      <div className="container  mx-auto flex flex-col items-center text-center space-y-6">
+    <footer className="bg-gradient-to-r bg-blue-950 text-white py-10">
+      <div className="container mx-auto flex flex-col items-center text-center space-y-6">
 
         <h1 className="text-3xl font-bold tracking-wide">MoviePulse</h1>
 
@@ -16,8 +16,8 @@ function Footer() {
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition">
             <FaTwitter />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition">
-            <FaFacebook />
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition">
+            <FaLinkedin />
           </a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition">
             <FaInstagram />
@@ -40,3 +40,4 @@ function Footer() {
 }
 
 export default Footer;
+
