@@ -16,4 +16,5 @@ export const fetchMoviesFromApi = async () => {
         throw error
     }
 }
+f
 
