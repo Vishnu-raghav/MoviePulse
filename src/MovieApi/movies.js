@@ -1,6 +1,6 @@
 
 export const fetchMoviesFromApi = async () => {
-    const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+    const API_KEY = "4ef731e3bc88e84e4a355c9a8157780c";
     const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
     try {
@@ -16,4 +16,5 @@ export const fetchMoviesFromApi = async () => {
         throw error
     }
 }
+
 
