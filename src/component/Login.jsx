@@ -1,79 +1,74 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import authService from "../appwrite/auth";
-import { login as authLogin } from "../store/authSlice";
 import { useForm } from "react-hook-form";
 import Input from "./Input";
-import { Button } from "./Button";
-import { useState } from "react";
+import Button from "./Button";
+import { useDispatch } from "react-redux";
+import authService from "../appwrite/auth"; 
+import { login } from "../store/authSlice";
 
-function Login() {
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+function Login({ isOpen, onClose, switchToSignUp }) {
+  if (!isOpen) return null;
+
   const dispatch = useDispatch();
+  const { register, handleSubmit, setError, formState: { errors } } = useForm();
 
-  const login = async (data) => {
-    setError("");
+  const onSubmit = async (data) => {
     try {
-      const session = await authService.login(data);
+      const session = await authService.login(data); 
       if (session) {
-        const userData = await authService.getCurrentUser();
-        if (userData) {
-          dispatch(authLogin(userData));
-          navigate("/");
-        }
+        const user = await authService.getCurrentUser(); 
+        dispatch(login(user)); 
+        onClose(); 
       }
     } catch (error) {
-      setError(error.message);
+      setError("email", { type: "manual", message: "Invalid email or password" });
     }
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-      >
-        <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign in to your account
-        </h2>
+    <div
+      id="modal-backdrop"
+      className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-md z-50 transition-opacity duration-300"
+      onClick={(e) => e.target.id === "modal-backdrop" && onClose()}
+    >
+      <div className="bg-white p-6 rounded-lg w-96 shadow-lg relative animate-fadeIn scale-100 transition-transform duration-300">
+        <button className="absolute top-2 right-2 text-gray-500 hover:text-black" onClick={onClose}>
+          ✖
+        </button>
+
+        <h2 className="text-center text-2xl font-bold">Sign in to your account</h2>
         <p className="mt-2 text-center text-base text-black/60">
-          Don&apos;t have any account?&nbsp;
-          <Link
-            to="/signup"
+          Don&apos;t have an account?&nbsp;
+          <button
+            onClick={() => {
+              onClose();
+              switchToSignUp();
+            }}
             className="font-medium text-primary transition-all duration-200 hover:underline"
           >
             Sign Up
-          </Link>
+          </button>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form handleSubmit={login}>
-          <div>
-            <Input
-              label="Email: "
-              placeholder="Enter your email"
-              type="email"
-              {...register("email", {
-                required: true,
-                validate: {
-                  matchPatern: (value) =>
-                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                    "Email address must be a valid address",
-                },
-              })}
-            />
-            <Input
-              label="Password : "
-              type="Password"
-              placeholder="Enter your password"
-              {...register("password", {
-                required: true,
-              })}
-            />
-            <Button type="submit" className="w-full">
-              Sign in
-            </Button>
-          </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+          <Input
+            label="Email:"
+            type="email"
+            placeholder="Enter your email"
+            {...register("email", { required: "Email is required" })}
+          />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+
+          <Input
+            label="Password:"
+            type="password"
+            placeholder="Enter your password"
+            {...register("password", { required: "Password is required" })}
+          />
+          {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+
+          <Button type="submit" className="w-full mt-4">
+            Sign in
+          </Button>
         </form>
       </div>
     </div>

@@ -8,6 +8,7 @@ import App from './App.jsx'
 import Home from './pages/Home.jsx'
 import MoviePage from './pages/MoviePage.jsx'
 import SearchResults from './pages/SearchResult.jsx'
+import WatchList from './pages/WatchListPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path : "/search/:query",
         element : <SearchResults/>
+      },
+      {
+        path : 'watchlist',
+        element : <WatchList/>
       }
     ]
   }

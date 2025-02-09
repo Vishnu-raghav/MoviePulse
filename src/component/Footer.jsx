@@ -3,8 +3,8 @@ import { FaTwitter, FaFacebook, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-gradient-to-r bg-blue-950 text-white py-10">
-      <div className="container mx-auto flex flex-col items-center text-center space-y-6">
+    <footer className="bg-gradient-to-r  bg-blue-950 text-white py-10">
+      <div className="container  mx-auto flex flex-col items-center text-center space-y-6">
 
         <h1 className="text-3xl font-bold tracking-wide">MoviePulse</h1>
 

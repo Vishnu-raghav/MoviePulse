@@ -12,26 +12,21 @@ function App() {
     authService.getCurrentUser()
                .then((userData) =>{
                   if(userData){
-                    dispatch(login({userData}))
+                    dispatch(login(userData))
                   }else{
                     dispatch(logout())
                   }
                })
                .finally(() => setLoading(false))
   },[])
-
   return !loading ? (
-    <div>
-      <div>
+      <div className="flex flex-col min-h-screen">
         <Header/>
-        <div className='pt-16'>
+        <div className="flex-grow pt-10">
         <Outlet/>
         </div>
         <Footer/>
-
-
       </div>
-    </div>
   ) : null
 }
 

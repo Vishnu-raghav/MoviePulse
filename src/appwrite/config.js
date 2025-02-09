@@ -1,64 +1,68 @@
 import conf from "../conf/conf";
-import { Client,ID,Databases,Query } from "appwrite";
+import { Client, ID, Databases, Query } from "appwrite";
 
-export class Service{
-    client = new Client();
-    databases;
-    
-    constructor(){
-        this.client
-        .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId);
-        this.databases = new Databases(this.client);
-    }
+export class Service {
+  client = new Client();
+  databases;
 
-    async addToWatchList({title,movieId,userId,Poster}){
-        try {
-            return await this.databases.createDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
-                ID.unique(),
-                {
-                    title,
-                    movieId,
-                    userId,
-                    Poster,
+  constructor() {
+    this.client
+      .setEndpoint(conf.appwriteUrl)
+      .setProject(conf.appwriteProjectId);
+    this.databases = new Databases(this.client);
+  }
 
-                }
-            )
-        } catch (error) {
-            console.error("Error adding movie to watchlist:", error);
+  async addToWatchList({ title, movieId, userId, poster }) {
+    try {
+      return await this.databases.createDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        ID.unique(),
+        {
+          title,
+          movieId,
+          userId,
+          poster,
         }
+      );
+    } catch (error) {
+      return null;
     }
+  }
 
-    async removeToWatchList(documentID){
-       try {
-        await this.databases.deleteDocument(
-            conf.appwriteDatabaseId,
-            conf.appwriteCollectionId,
-            documentID
-        )
-        return true
-       } catch (error) {
-            console.log("Appwrite serive :: deletePost :: error", error);
-            return false
-       }
+  async removeFromWatchList(documentID) {
+    try {  
+      await this.databases.deleteDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        documentID
+      );
+  
+      return true;
+    } catch (error) {
+      return false;
     }
+  }
+  
 
-    async getWatchList(userId){
-          try {
-            const queries = [Query.equal('userId', userId)];
-            return await this.databases.listDocuments(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
-                queries
-            )
-          } catch (error) {
-            console.log("Appwrite serive :: getPosts :: error", error);
-            return false
-          }
+  async getWatchList(userId) {
+    try {
+      
+      const queries = [Query.equal("userId", userId)];
+      const response = await this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        queries
+      );
+  
+      return response; 
+    } catch (error) {
+      return { documents: [] }; 
     }
+  }
+  
+  
 }
 
-const service = new Service()
-export default service
+const service = new Service();
+export default service;

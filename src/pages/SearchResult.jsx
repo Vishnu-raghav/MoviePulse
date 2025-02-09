@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Card from "../component/Card";
 
 function SearchResults() {
-  const { query } = useParams(); // ✅ Get search term from URL
+  const { query } = useParams(); 
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -28,6 +28,7 @@ function SearchResults() {
               key={movie.id} 
               slug={generateSlug(movie.title)} 
               Name={movie.title} 
+              movieId={movie.id}
               Image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
             />
           
