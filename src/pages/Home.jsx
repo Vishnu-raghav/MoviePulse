@@ -16,9 +16,6 @@ function Home() {
       {loading && <p className="text-center text-white text-xl font-semibold">Loading...</p>}
       {error && <p className="text-center text-red-500 text-lg font-bold">{error}</p>}
 
-      {/* ✅ 2 columns on small screens */}
-      {/* ✅ 3 columns on medium (tablet) */}
-      {/* ✅ 4-5 columns on large screens */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 pt-10">
         {movies?.map((movie) => (
           <Card 
