@@ -118,6 +118,7 @@ function Header() {
 
       {isLoginOpen && (
         <Login
+          isOpen={isLoginOpen}
           onClose={() => setIsLoginOpen(false)}
           switchToSignUp={() => {
             setIsLoginOpen(false);
@@ -128,6 +129,7 @@ function Header() {
 
       {isSignUpOpen && (
         <Signup
+        isOpen={isSignUpOpen}
           onClose={() => setIsSignUpOpen(false)}
           switchToLogin={() => {
             setIsSignUpOpen(false);
